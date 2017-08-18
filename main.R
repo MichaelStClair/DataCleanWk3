@@ -176,7 +176,35 @@ object.size(fakeData)
 print(object.size(fakeData),units="Mb")
 # 0.8 Mb
 
-# Video 3: Creating new variables (I cleared the workspace)
+
+## Video 3: Creating new variables (I cleared the workspace)
+
+# This uses the Baltimore data again
+if(!file.exists("./data")){dir.create("./data")}
+fileURL <- "https://data.baltimorecity.gov/api/views/k5ry-ef3g/rows.csv?accessType=DOWNLOAD"
+download.file(fileURL,destfile="./data/restaurants.csv")
+restData <- read.csv("./data/restaurants.csv")
+
+# create a sequence from 1 to 10 by 2 (BY)
+s1 <- seq(1,10,by=2); s1
+s1
+# [1] 1 3 5 7 9
+
+# same but create exactly evenly spaced values (LENGTH)
+s2 <- seq(1,10,length=3); s2
+# [1]  1.0  5.5 10.0
+
+# Use seq with along to create a vector of indices, good for looping (ALONG)
+x <- c(1,3,8,25,100); seq(along = x) 
+# [1] 1 2 3 4 5
+
+# Add a logical vector to a data frame and table it
+restData$nearMe = restData$neighborhood %in% c("Roland Park", "Homeland")
+table(restData$nearMe)
+# FALSE  TRUE 
+# 1314    13 
+
+
 
 
 
